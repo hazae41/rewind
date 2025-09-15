@@ -1,0 +1,17 @@
+{
+  "name": "@hazae41/rewind",
+  "version": "1.0.0",
+  "imports": {
+    "@/": "./src/",
+    "tailwindcss": "npm:tailwindcss@^4.1.13"
+  },
+  "exports": {
+    ".": "./src/mod.ts"
+  },
+  "compilerOptions": {
+    "lib": [
+      "es2024",
+      "dom"
+    ]
+  }
+}

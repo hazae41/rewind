@@ -1,0 +1,16 @@
+{
+  "version": "5",
+  "specifiers": {
+    "npm:tailwindcss@^4.1.13": "4.1.13"
+  },
+  "npm": {
+    "tailwindcss@4.1.13": {
+      "integrity": "sha512-i+zidfmTqtwquj4hMEwdjshYYgMbOrPzb9a0M3ZgNa0JMoZeFC6bxZvO8yr8ozS6ix2SDz0+mvryPeBs2TFE+w=="
+    }
+  },
+  "workspace": {
+    "dependencies": [
+      "npm:tailwindcss@^4.1.13"
+    ]
+  }
+}
