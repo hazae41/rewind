@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
+      - run: "npm install -g deno"
       - run: "deno bundle ./src/mod.ts --output local"
       - run: "deno bundle @hazae41/rewind@${{github.ref_name}} --output remote"
       - run: "diff local remote"
