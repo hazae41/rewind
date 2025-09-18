@@ -6,8 +6,8 @@ on:
 name: release
 
 jobs:
-  build:
-    name: build
+  compare:
+    name: compare
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
