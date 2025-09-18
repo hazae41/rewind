@@ -1,0 +1,17 @@
+on:
+  push:
+    tags:
+      - "*"
+
+name: release
+
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: "deno bundle ./src/mod.ts --output local"
+      - run: "deno bundle @hazae41/rewind@${{github.ref_name}} --output remote"
+      - run: "diff local remote"
+      - run: "[[ -z $(diff local remote) ]]"
