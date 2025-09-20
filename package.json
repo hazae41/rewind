@@ -1,9 +1,9 @@
 {
   "name": "@hazae41/rewind",
   "description": "Just-in-time Tailwind compiler but supply-chain hardened",
-  "version": "1.0.9",
+  "version": "1.0.7",
   "scripts": {
-    "version": "cat test.json | jq --arg version \"$npm_package_version\" '.version = $version' > test.json"
+    "version": "cat test.json | jq --arg version \"$npm_package_version\" '.version = $version' | cat > test.json"
   },
   "exports": {
     ".": "./src/mod.ts"
