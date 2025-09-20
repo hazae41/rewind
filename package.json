@@ -1,0 +1,17 @@
+{
+  "name": "@hazae41/rewind",
+  "description": "Just-in-time Tailwind compiler but supply-chain hardened",
+  "version": "1.0.0",
+  "scripts": {
+    "version": "cat test.json | jq '.version = \"$VERSION\"' | tee test.json"
+  },
+  "exports": {
+    ".": "./src/mod.ts"
+  },
+  "imports": {
+    "@/": "./src/"
+  },
+  "dependencies": {
+    "tailwindcss": "^4.1.13"
+  }
+}
