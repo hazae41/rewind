@@ -1,4 +1,4 @@
 {
   "name": "test",
-  "version": "$VERSION"
+  "version": "$npm_package_version"
 }
