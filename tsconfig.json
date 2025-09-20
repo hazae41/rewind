@@ -6,7 +6,10 @@
     } ,
     "module": "nodenext",
     "moduleResolution": "nodenext",
-    "outDir": "./dist",
+    "outDir": "./out",
     "declaration": true
-  }
+  },
+  "include": [
+    "./src/**/*"
+  ]
 }
