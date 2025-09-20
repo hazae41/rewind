@@ -3,6 +3,7 @@
   "description": "Just-in-time Tailwind compiler but supply-chain hardened",
   "version": "1.0.13",
   "scripts": {
+    "prepare": "tsc",
     "version": "cat deno.json | jq --arg version \"$npm_package_version\" '.version = $version' | tee deno.json > /dev/null && git add deno.json"
   },
   "exports": {

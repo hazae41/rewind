@@ -1,4 +1,4 @@
-import { List } from "@/libs/dom/mod.ts";
+import { List } from "@/libs/dom/mod.js";
 import * as Tailwind from "tailwindcss";
 
 export interface Compiler {
@@ -60,3 +60,5 @@ export class Rewind {
   }
 
 }
+
+console.log("lol")

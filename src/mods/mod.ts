@@ -1,1 +1,1 @@
-export * from "./rewind/mod.ts";
+export * from "./rewind/mod.js";
