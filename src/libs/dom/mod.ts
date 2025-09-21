@@ -6,7 +6,6 @@ export interface List<T> {
 
 }
 
-// deno-lint-ignore no-namespace
 export namespace List {
 
   export function* allItemsOf<T>(items: List<T>) {
