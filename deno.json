@@ -1,0 +1,17 @@
+{
+  "name": "@hazae41/rewind",
+  "version": "1.0.15",
+  "imports": {
+    "@/": "./src/"
+  },
+  "exports": {
+    ".": "./src/mod.ts"
+  },
+  "lint": {
+    "rules": {
+      "exclude": [
+        "no-namespace"
+      ]
+    }
+  }
+}
