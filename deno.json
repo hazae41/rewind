@@ -1,20 +1,11 @@
 {
   "name": "@hazae41/rewind",
   "version": "1.0.0",
+  "vendor": true,
   "imports": {
     "@/": "./src/"
   },
   "exports": {
     ".": "./src/mod.ts"
-  },
-  "unstable": [
-    "sloppy-imports"
-  ],
-  "lint": {
-    "rules": {
-      "exclude": [
-        "no-sloppy-imports"
-      ]
-    }
   }
 }

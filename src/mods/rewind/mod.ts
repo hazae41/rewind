@@ -1,4 +1,6 @@
-import { List } from "@/libs/dom/mod.js";
+/// <reference lib="dom" />
+
+import { List } from "@/libs/dom/mod.ts";
 import * as Tailwind from "tailwindcss";
 
 export interface Compiler {

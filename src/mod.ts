@@ -2,4 +2,4 @@
  * @module
  */
 
-export * from "./mods/mod.js";
+export * from "./mods/mod.ts";
