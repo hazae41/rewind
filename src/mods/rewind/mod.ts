@@ -60,5 +60,3 @@ export class Rewind {
   }
 
 }
-
-console.log("lol")
