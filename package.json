@@ -4,7 +4,7 @@
   "description": "Just-in-time Tailwind compiler but supply-chain hardened",
   "version": "1.0.13",
   "scripts": {
-    "prepare": "rm -rf ./out && cp -r ./src/. ./itm && tscousin ./itm && tsc",
+    "prepare": "rm -rf ./out && tsc && tscousin",
     "version": "cat deno.json | jq --arg version \"$npm_package_version\" '.version = $version' | tee deno.json > /dev/null && git add deno.json"
   },
   "exports": {
@@ -14,6 +14,6 @@
     "tailwindcss": "^4.1.13"
   },
   "devDependencies": {
-    "@hazae41/tscousin": "^0.0.1"
+    "@hazae41/tscousin": "^1.0.1"
   }
 }

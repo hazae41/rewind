@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "./itm",
+    "baseUrl": "./src",
     "paths": {
       "@/*": ["./*"]
     } ,
@@ -12,7 +12,7 @@
     "rewriteRelativeImportExtensions": true
   },
   "include": [
-    "./itm/**/*"
+    "./src/**/*"
   ],
   "exclude": []
 }
