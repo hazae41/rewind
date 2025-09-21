@@ -10,7 +10,7 @@ npm install @hazae41/rewind
 deno install jsr:@hazae41/rewind
 ```
 
-[**NPM 📦**](https://www.npmjs.com/package/@hazae41/rewind) [**JSR 📦**](https://jsr.io/@hazae41/rewind)
+[**📦 NPM**](https://www.npmjs.com/package/@hazae41/rewind) • [**📦 JSR**](https://jsr.io/@hazae41/rewind)
 
 ## Features
 
