@@ -1,7 +1,7 @@
 {
   "version": "5",
   "specifiers": {
-    "npm:@hazae41/tscousin@^1.0.4": "1.0.7",
+    "npm:@hazae41/tscousin@^1.0.7": "1.0.7",
     "npm:@types/node@*": "24.2.0",
     "npm:tailwindcss@^4.1.13": "4.1.13"
   },
@@ -26,7 +26,7 @@
   "workspace": {
     "packageJson": {
       "dependencies": [
-        "npm:@hazae41/tscousin@^1.0.4",
+        "npm:@hazae41/tscousin@^1.0.7",
         "npm:tailwindcss@^4.1.13"
       ]
     }

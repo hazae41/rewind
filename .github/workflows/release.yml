@@ -12,7 +12,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: "npm install -g deno"
+      - run: "npm ci --ignore-scripts"
+      - run: "npm diff $(jq -r '.name' package.json)@$(jq -r '.version' package.json)"
+      - run: "[[ -z $(npm diff $(jq -r '.name' package.json)@$(jq -r '.version' package.json)) ]]"
       - run: "deno bundle ./src/mod.ts --output local"
-      - run: "deno bundle jsr:@hazae41/rewind@${{github.ref_name}} --output remote"
+      - run: "deno bundle jsr:$(jq -r '.name' deno.json)@$(jq -r '.version' deno.json) --output remote"
       - run: "diff local remote"
       - run: "[[ -z $(diff local remote) ]]"
