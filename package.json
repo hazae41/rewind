@@ -11,7 +11,10 @@
     "./out"
   ],
   "exports": {
-    ".": "./out/mod.js"
+    ".": {
+      "types": "./out/mod.d.ts",
+      "import": "./out/mod.js"
+    }
   },
   "dependencies": {
     "tailwindcss": "^4.1.13"
