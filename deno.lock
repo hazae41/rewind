@@ -1,10 +1,15 @@
 {
   "version": "5",
   "specifiers": {
+    "npm:@hazae41/tscousin@^1.0.4": "1.0.7",
     "npm:@types/node@*": "24.2.0",
     "npm:tailwindcss@^4.1.13": "4.1.13"
   },
   "npm": {
+    "@hazae41/tscousin@1.0.7": {
+      "integrity": "sha512-OEWcRU/Eh6ujkmZ6J9nYaQTjoAyR3JWc5pk7BonxhUhKyWszBk3tBjdKTfdnpgAgbrFj7vhwVA+EUh6TlvM10g==",
+      "bin": true
+    },
     "@types/node@24.2.0": {
       "integrity": "sha512-3xyG3pMCq3oYCNg7/ZP+E1ooTaGB4cG8JWRsqqOYQdbWNY4zbaV0Ennrd7stjiJEFZCaybcIgpTjJWHRfBSIDw==",
       "dependencies": [
