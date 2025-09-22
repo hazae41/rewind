@@ -3,6 +3,8 @@
   "name": "@hazae41/rewind",
   "description": "Just-in-time Tailwind compiler but supply-chain hardened",
   "version": "1.0.23",
+  "repository": "github:hazae41/rewind",
+  "author": "hazae41",
   "scripts": {
     "prepare": "rm -rf ./out && tsc && tscousin",
     "version": "deno -RW ./vsync.ts && git add deno.json"
