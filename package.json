@@ -5,7 +5,7 @@
   "version": "1.0.18",
   "scripts": {
     "prepare": "rm -rf ./out && tsc && tscousin",
-    "version": "cat deno.json | jq --arg version \"$npm_package_version\" '.version = $version' | tee deno.json > /dev/null && git add deno.json"
+    "version": "deno -RW ./vsync.ts && git add deno.json"
   },
   "files": [
     "./out"

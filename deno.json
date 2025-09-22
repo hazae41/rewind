@@ -1,6 +1,6 @@
 {
   "name": "@hazae41/rewind",
-  "version": "1.0.18",
+  "version": "1.0.13300",
   "imports": {
     "@/": "./src/"
   },
