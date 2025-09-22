@@ -21,6 +21,7 @@
   "workspace": {
     "packageJson": {
       "dependencies": [
+        "npm:@hazae41/tscousin@^1.0.4",
         "npm:tailwindcss@^4.1.13"
       ]
     }
