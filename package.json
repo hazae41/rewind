@@ -2,7 +2,7 @@
   "type": "module",
   "name": "@hazae41/rewind",
   "description": "Just-in-time Tailwind compiler but supply-chain hardened",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "scripts": {
     "prepare": "rm -rf ./out && tsc && tscousin",
     "version": "deno -RW ./vsync.ts && git add deno.json"
