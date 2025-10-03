@@ -7,25 +7,25 @@ export interface Compiler {
 
 export class Rewind {
 
-  readonly classes: Set<string> = new Set()
+  readonly names: Set<string> = new Set()
 
-  readonly styles: Map<HTMLStyleElement, Compiler> = new Map()
-
-  readonly observer: MutationObserver = new MutationObserver(() => this.#recompile())
+  readonly cache: Map<Compiler, HTMLStyleElement> = new Map()
 
   constructor(
     readonly document: Document
   ) { }
 
-  async compile() {
+  async render() {
     for (const element of List.allItemsOf(this.document.querySelectorAll("[class]")))
       for (const name of List.allItemsOf(element.classList))
-        this.classes.add(name)
+        this.names.add(name)
 
-    for (const link of List.allItemsOf(this.document.getElementsByTagName("link"))) {
+    for (const link of List.allItemsOf(this.document.querySelectorAll("link"))) {
       if (link == null)
         continue
       if (link.rel !== "stylesheet")
+        continue
+      if (link.dataset.rewind == null)
         continue
       const source = await fetch(link.href).then(r => r.text())
 
@@ -33,28 +33,76 @@ export class Rewind {
 
       const style = this.document.createElement("style")
 
-      style.textContent = compiler.build([...this.classes])
+      style.id = crypto.randomUUID().slice(0, 8)
+      style.textContent = compiler.build([...this.names])
 
-      this.styles.set(style, compiler)
+      link.dataset.style = style.id
+      link.after(style)
 
-      link.replaceWith(style)
+      this.cache.set(compiler, style)
     }
 
-    this.observer.observe(this.document, { attributes: true, attributeFilter: ["class"], subtree: true, childList: true })
+    new MutationObserver(() => this.#rebuild()).observe(this.document, { attributes: true, attributeFilter: ["class"], subtree: true, childList: true })
   }
 
-  #recompile() {
-    const size = this.classes.size
+  async prerender() {
+    for (const element of List.allItemsOf(this.document.querySelectorAll("[class]")))
+      for (const name of List.allItemsOf(element.classList))
+        this.names.add(name)
+
+    for (const link of List.allItemsOf(this.document.querySelectorAll("link"))) {
+      if (link == null)
+        continue
+      if (link.rel !== "stylesheet")
+        continue
+      if (link.dataset.rewind == null)
+        continue
+      const source = await fetch(link.href).then(r => r.text())
+
+      const compiler = await Tailwind.compile(source)
+
+      const style = this.document.createElement("style")
+
+      style.id = crypto.randomUUID().slice(0, 8)
+      style.textContent = compiler.build([...this.names])
+
+      link.dataset.style = style.id
+      link.after(style)
+    }
+  }
+
+  async hydrate() {
+    for (const link of List.allItemsOf(this.document.querySelectorAll("link"))) {
+      if (link == null)
+        continue
+      if (link.rel !== "stylesheet")
+        continue
+      if (link.dataset.rewind == null)
+        continue
+      const source = await fetch(link.href).then(r => r.text())
+
+      const compiler = await Tailwind.compile(source)
+
+      const style = this.document.getElementById(link.dataset.rewind) as HTMLStyleElement
+
+      this.cache.set(compiler, style)
+    }
+
+    new MutationObserver(() => this.#rebuild()).observe(this.document, { attributes: true, attributeFilter: ["class"], subtree: true, childList: true })
+  }
+
+  #rebuild() {
+    const size = this.names.size
 
     for (const x of List.allItemsOf(this.document.querySelectorAll("[class]")))
       for (const y of List.allItemsOf(x.classList))
-        this.classes.add(y)
+        this.names.add(y)
 
-    if (size === this.classes.size)
+    if (size === this.names.size)
       return
 
-    for (const [style, compiler] of this.styles)
-      style.textContent = compiler.build([...this.classes])
+    for (const [compiler, style] of this.cache)
+      style.textContent = compiler.build([...this.names])
 
     return
   }
