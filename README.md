@@ -17,18 +17,20 @@ deno install jsr:@hazae41/rewind
 ### Current features
 - 100% TypeScript and ESM
 - No external dependencies
-- Web-only API
+- Works with any framework
+- Just-in-time rendering
+- Prerender and hydrate
 
 ## Why
 
-This is the dependencies graph of the average Tailwind library
+Look at the dependencies graph of the average Tailwind library
 
 ## Usage
 
 Client-side any framework to DOM
 
 ```tsx
-await new Rewind(document).compile()
+await new Rewind(document).render()
 
 // document now has a <style> with all your classes
 
@@ -47,7 +49,7 @@ function App() {
 
 createRoot(root).render(<App />)
 
-await new Rewind(document).compile()
+await new Rewind(document).render()
 
 // document now has a <style> with all your classes
 
@@ -69,7 +71,7 @@ const html = renderToString(<App />)
 
 const document = new DOMParser().parseFromString(html, "text/html")
 
-await new Rewind(document).compile()
+await new Rewind(document).prerender()
 
 // document now has a <style> with all your classes
 
@@ -87,7 +89,7 @@ import { useEffect } from "react"
 export default function App() {
 
   useEffect(() => {
-    await new Rewind(document).compile()
+    await new Rewind(document).render()
 
     // document now has a <style> with all your classes
 
