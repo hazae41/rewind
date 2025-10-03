@@ -27,7 +27,7 @@ Look at the dependencies graph of the average Tailwind library
 
 ## Usage
 
-Client-side any framework to DOM
+Client-side any framework (just-in-time rendering)
 
 ```tsx
 await new Rewind(document).render()
@@ -37,50 +37,7 @@ await new Rewind(document).render()
 // it will automatically update when your classes are modified
 ```
 
-Client-side pure React to DOM
-
-```tsx
-import { Rewind } from "@hazae41/rewind"
-import { createRoot } from "react-dom/client"
-
-function App() {
-  return <div className="text-2xl">Hello world</div>
-}
-
-createRoot(root).render(<App />)
-
-await new Rewind(document).render()
-
-// document now has a <style> with all your classes
-
-// it will automatically update when your classes are modified
-```
-
-Server-side pure React to HTML
-
-```tsx
-import { Rewind } from "@hazae41/rewind"
-import { DOMParser, XMLSerializer } from "..."
-import { renderToString } from "react-dom/static"
-
-function App() {
-  return <div className="text-2xl">Hello world</div>
-}
-
-const html = renderToString(<App />)
-
-const document = new DOMParser().parseFromString(html, "text/html")
-
-await new Rewind(document).prerender()
-
-// document now has a <style> with all your classes
-
-// you can serialize document to get your static html
-
-const html2 = new XMLSerializer().serializeToString(document)
-```
-
-Any-side React any framework to DOM
+Client-side any React framework (just-in-time rendering)
 
 ```tsx
 import { Rewind } from "@hazae41/rewind"
@@ -100,4 +57,60 @@ export default function App() {
     Hello world
   </div>
 }
+```
+
+Client-side pure React (just-in-time rendering)
+
+```tsx
+import { Rewind } from "@hazae41/rewind"
+import { createRoot } from "react-dom/client"
+
+function App() {
+  return <div className="text-2xl">Hello world</div>
+}
+
+await new Rewind(document).render()
+
+createRoot(document.body).render(<App />)
+```
+
+Client-side pure React with SSG (prerendering and hydration)
+
+```tsx
+import { Rewind } from "@hazae41/rewind"
+import { hydrateRoot } from "react-dom/static"
+
+function App() {
+  return <div className="text-2xl">Hello world</div>
+}
+
+if (client) {
+  await new Rewind(document).hydrate()
+  hydrateRoot(document.body, <App />)
+}
+
+if (server) {
+  await new Rewind(document).prerender()
+  document.body = prerenderToString(<App />)
+}
+```
+
+Server-side pure React to HTML (prerendering)
+
+```tsx
+import { Rewind } from "@hazae41/rewind"
+import { DOMParser, XMLSerializer } from "..."
+import { renderToString } from "react-dom/static"
+
+function App() {
+  return <div className="text-2xl">Hello world</div>
+}
+
+const html = renderToString(<App />)
+
+const document = new DOMParser().parseFromString(html, "text/html")
+
+await new Rewind(document).prerender()
+
+const html2 = new XMLSerializer().serializeToString(document)
 ```
