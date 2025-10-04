@@ -87,6 +87,8 @@ export class Rewind {
 
       if (element == null)
         continue
+      if (element instanceof HTMLStyleElement === false)
+        continue
 
       const style = element as HTMLStyleElement
 
