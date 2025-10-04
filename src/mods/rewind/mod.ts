@@ -83,7 +83,7 @@ export class Rewind {
 
       const compiler = await Tailwind.compile(source)
 
-      const element = this.document.querySelector(`style#${link.dataset.style}`)
+      const element = this.document.getElementById(link.dataset.style)
 
       if (element == null)
         continue
