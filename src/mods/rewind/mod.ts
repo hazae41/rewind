@@ -16,11 +16,11 @@ export class Rewind {
   ) { }
 
   async render() {
-    for (const element of List.allItemsOf(this.document.querySelectorAll("[class]")))
-      for (const name of List.allItemsOf(element.classList))
+    for (const element of List.iterate(this.document.querySelectorAll("[class]")))
+      for (const name of List.iterate(element.classList))
         this.names.add(name)
 
-    for (const link of List.allItemsOf(this.document.querySelectorAll("link"))) {
+    for (const link of List.iterate(this.document.querySelectorAll("link"))) {
       if (link == null)
         continue
       if (link.rel !== "stylesheet")
@@ -46,11 +46,11 @@ export class Rewind {
   }
 
   async prerender() {
-    for (const element of List.allItemsOf(this.document.querySelectorAll("[class]")))
-      for (const name of List.allItemsOf(element.classList))
+    for (const element of List.iterate(this.document.querySelectorAll("[class]")))
+      for (const name of List.iterate(element.classList))
         this.names.add(name)
 
-    for (const link of List.allItemsOf(this.document.querySelectorAll("link"))) {
+    for (const link of List.iterate(this.document.querySelectorAll("link"))) {
       if (link == null)
         continue
       if (link.rel !== "stylesheet")
@@ -72,7 +72,7 @@ export class Rewind {
   }
 
   async hydrate() {
-    for (const link of List.allItemsOf(this.document.querySelectorAll("link"))) {
+    for (const link of List.iterate(this.document.querySelectorAll("link"))) {
       if (link == null)
         continue
       if (link.rel !== "stylesheet")
@@ -101,8 +101,8 @@ export class Rewind {
   #rebuild() {
     const size = this.names.size
 
-    for (const x of List.allItemsOf(this.document.querySelectorAll("[class]")))
-      for (const y of List.allItemsOf(x.classList))
+    for (const x of List.iterate(this.document.querySelectorAll("[class]")))
+      for (const y of List.iterate(x.classList))
         this.names.add(y)
 
     if (size === this.names.size)

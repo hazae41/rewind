@@ -8,7 +8,7 @@ export interface List<T> {
 
 export namespace List {
 
-  export function* allItemsOf<T>(items: List<T>) {
+  export function* iterate<T>(items: List<T>) {
     for (let i = 0, x = items.item(i); i < items.length && x != null; i++, x = items.item(i))
       yield x
   }
