@@ -1,6 +1,6 @@
 import { List } from "@/libs/dom/mod.ts";
+import { fetchOrReadAsTextOrThrow } from "@/libs/fetch/mod.ts";
 import * as Tailwind from "tailwindcss";
-import { fetchOrReadAsTextOrThrow } from "../../libs/fetch/mod.ts";
 
 export interface Compiler {
   build(classes: string[]): string
