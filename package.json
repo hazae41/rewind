@@ -2,7 +2,7 @@
   "type": "module",
   "name": "@hazae41/rewind",
   "description": "Just-in-time Tailwind compiler but supply-chain hardened",
-  "version": "2.3.3",
+  "version": "2.3.4",
   "repository": "github:hazae41/rewind",
   "author": "hazae41",
   "scripts": {
