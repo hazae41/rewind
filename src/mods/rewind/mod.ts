@@ -1,5 +1,6 @@
 import { List } from "@/libs/dom/mod.ts";
 import * as Tailwind from "tailwindcss";
+import { fetchOrReadAsTextOrThrow } from "../../libs/fetch/mod.ts";
 
 export interface Compiler {
   build(classes: string[]): string
@@ -15,7 +16,7 @@ export class Rewind {
     readonly document: Document
   ) { }
 
-  async render() {
+  async renderOrThrow() {
     for (const element of List.iterate(this.document.querySelectorAll("[class]")))
       for (const name of List.iterate(element.classList))
         this.names.add(name)
@@ -27,7 +28,7 @@ export class Rewind {
         continue
       if (link.dataset.rewind == null)
         continue
-      const source = await fetch(link.href).then(r => r.text())
+      const source = await fetchOrReadAsTextOrThrow(link.href)
 
       const compiler = await Tailwind.compile(source)
 
@@ -42,10 +43,10 @@ export class Rewind {
       this.cache.set(compiler, style)
     }
 
-    new MutationObserver(() => this.#rebuild()).observe(this.document, { attributes: true, attributeFilter: ["class"], subtree: true, childList: true })
+    new MutationObserver(() => this.#rebuildOrThrow()).observe(this.document, { attributes: true, attributeFilter: ["class"], subtree: true, childList: true })
   }
 
-  async prerender() {
+  async prerenderOrThrow() {
     for (const element of List.iterate(this.document.querySelectorAll("[class]")))
       for (const name of List.iterate(element.classList))
         this.names.add(name)
@@ -57,7 +58,7 @@ export class Rewind {
         continue
       if (link.dataset.rewind == null)
         continue
-      const source = await fetch(link.href).then(r => r.text())
+      const source = await fetchOrReadAsTextOrThrow(link.href)
 
       const compiler = await Tailwind.compile(source)
 
@@ -71,7 +72,7 @@ export class Rewind {
     }
   }
 
-  async hydrate() {
+  async hydrateOrThrow() {
     for (const link of List.iterate(this.document.querySelectorAll("link"))) {
       if (link == null)
         continue
@@ -79,7 +80,7 @@ export class Rewind {
         continue
       if (link.dataset.rewind == null)
         continue
-      const source = await fetch(link.href).then(r => r.text())
+      const source = await fetchOrReadAsTextOrThrow(link.href)
 
       const compiler = await Tailwind.compile(source)
 
@@ -95,10 +96,10 @@ export class Rewind {
       this.cache.set(compiler, style)
     }
 
-    new MutationObserver(() => this.#rebuild()).observe(this.document, { attributes: true, attributeFilter: ["class"], subtree: true, childList: true })
+    new MutationObserver(() => this.#rebuildOrThrow()).observe(this.document, { attributes: true, attributeFilter: ["class"], subtree: true, childList: true })
   }
 
-  #rebuild() {
+  #rebuildOrThrow() {
     const size = this.names.size
 
     for (const x of List.iterate(this.document.querySelectorAll("[class]")))

@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "@hazae41/tscousin": "^1.0.9",
+    "@types/node": "^24.6.2",
     "typescript": "^5.9.2"
   }
 }
