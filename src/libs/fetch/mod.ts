@@ -4,7 +4,7 @@ export async function fetchOrReadAsTextOrThrow(input: string) {
   const url = new URL(input.toString())
 
   if (url.protocol === "file:")
-    return readFile(url, "utf8")
+    return await readFile(url, "utf8")
 
   const response = await fetch(url)
 
