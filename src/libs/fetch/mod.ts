@@ -1,10 +1,13 @@
-import { readFile } from "node:fs/promises"
+export async function readAsTextOrThrow(file: string) {
+  const fs = await import("node:fs/promises")
+  return await fs.default.readFile(file, "utf8")
+}
 
 export async function fetchOrReadAsTextOrThrow(input: string) {
   const url = new URL(input.toString())
 
   if (url.protocol === "file:")
-    return await readFile(url, "utf8")
+    return await readAsTextOrThrow(url.pathname)
 
   const response = await fetch(url)
 
