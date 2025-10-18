@@ -9,7 +9,7 @@
     "examine": "deno lint ./src && deno check ./src && deno test ./src",
     "version": "deno -RW ./x.vsync.ts && git add deno.json",
     "prepare": "deno -RW ./x.dsync.ts && deno install",
-    "prepack": "rm -rf ./out && tsgo && tscousin"
+    "prepack": "rm -rf ./out && tsc && tscousin"
   },
   "files": [
     "./out"
@@ -26,6 +26,6 @@
   "devDependencies": {
     "@hazae41/tscousin": "^1.0.27",
     "@types/node": "^24.8.1",
-    "@typescript/native-preview": "^7.0.0-dev.20251018.1"
+    "typescript": "^5.9.3"
   }
 }
