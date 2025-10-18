@@ -26,7 +26,7 @@ export class Rewind {
         continue
       if (link.rel !== "stylesheet")
         continue
-      if (link.dataset.rewind == null)
+      if (!link.dataset.rewind)
         continue
       const source = await fetchOrReadAsTextOrThrow(link.href)
 
@@ -34,10 +34,9 @@ export class Rewind {
 
       const style = this.document.createElement("style")
 
-      style.id = crypto.randomUUID().slice(0, 8)
+      style.id = link.dataset.rewind
       style.textContent = compiler.build([...this.names])
 
-      link.dataset.style = style.id
       link.after(style)
 
       this.cache.set(compiler, style)
@@ -56,7 +55,7 @@ export class Rewind {
         continue
       if (link.rel !== "stylesheet")
         continue
-      if (link.dataset.rewind == null)
+      if (!link.dataset.rewind)
         continue
       const source = await fetchOrReadAsTextOrThrow(link.href)
 
@@ -64,10 +63,9 @@ export class Rewind {
 
       const style = this.document.createElement("style")
 
-      style.id = crypto.randomUUID().slice(0, 8)
+      style.id = link.dataset.rewind
       style.textContent = compiler.build([...this.names])
 
-      link.dataset.style = style.id
       link.after(style)
     }
   }
@@ -78,13 +76,13 @@ export class Rewind {
         continue
       if (link.rel !== "stylesheet")
         continue
-      if (link.dataset.rewind == null)
+      if (!link.dataset.rewind)
         continue
       const source = await fetchOrReadAsTextOrThrow(link.href)
 
       const compiler = await Tailwind.compile(source)
 
-      const element = this.document.getElementById(link.dataset.style)
+      const element = this.document.getElementById(link.dataset.rewind)
 
       if (element == null)
         continue
