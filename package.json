@@ -24,7 +24,7 @@
     "tailwindcss": "^4.1.14"
   },
   "devDependencies": {
-    "@hazae41/tscousin": "^1.0.27",
+    "@hazae41/tscousin": "^1.0.28",
     "@types/node": "^24.8.1",
     "typescript": "^5.9.3"
   }

@@ -1,21 +1,21 @@
 {
   "version": "5",
   "specifiers": {
-    "jsr:@hazae41/tscousin@^1.0.27": "1.0.27",
-    "npm:@hazae41/tscousin@^1.0.27": "1.0.27",
+    "jsr:@hazae41/tscousin@^1.0.28": "1.0.28",
+    "npm:@hazae41/tscousin@^1.0.28": "1.0.28",
     "npm:@types/node@*": "24.2.0",
     "npm:@types/node@^24.8.1": "24.8.1",
     "npm:tailwindcss@^4.1.14": "4.1.14",
     "npm:typescript@^5.9.3": "5.9.3"
   },
   "jsr": {
-    "@hazae41/tscousin@1.0.27": {
-      "integrity": "46316ce767bfb3e0c2b232b3cab7676a28942733b959b187580db0203cb68542"
+    "@hazae41/tscousin@1.0.28": {
+      "integrity": "5218915c136dd5c2b155cec4cdc38915a6cee42db17f3598ad35f47a19afb928"
     }
   },
   "npm": {
-    "@hazae41/tscousin@1.0.27": {
-      "integrity": "sha512-SFpe0EhNAfFJO19hiZ8TcWHdrjkojKNOIpkZWrwEseew855tpgPoqheXFRCjcHiDxe8AWZd6izzewHp//P4Etg==",
+    "@hazae41/tscousin@1.0.28": {
+      "integrity": "sha512-Wrg/66m0hLexrifpzJ5a/D7Jzb7FhLzBWrCFAgjZa+DIU8prA5rX4MwD5K34UZ6jsYBRZsYwNeVEYRqOIJHOEQ==",
       "bin": true
     },
     "@types/node@24.2.0": {
@@ -46,11 +46,11 @@
   },
   "workspace": {
     "dependencies": [
-      "jsr:@hazae41/tscousin@^1.0.27"
+      "jsr:@hazae41/tscousin@^1.0.28"
     ],
     "packageJson": {
       "dependencies": [
-        "npm:@hazae41/tscousin@^1.0.27",
+        "npm:@hazae41/tscousin@^1.0.28",
         "npm:@types/node@^24.8.1",
         "npm:tailwindcss@^4.1.14",
         "npm:typescript@^5.9.3"
