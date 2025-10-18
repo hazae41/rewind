@@ -27,6 +27,16 @@ Look at the dependencies graph of the average Tailwind library
 
 ## Usage
 
+### HTML
+
+Just add `data-rewind` to your `link` tag with some unique name (it will become an HTML id)
+
+```html
+<link rel="stylesheet" data-rewind="mystyle" href="./index.css" />
+```
+
+### JavaScript
+
 Client-side any framework (just-in-time rendering)
 
 ```tsx
