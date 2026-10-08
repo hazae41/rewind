@@ -1,18 +1,5 @@
 {
-  "name": "@hazae41/rewind",
-  "version": "2.3.12",
   "imports": {
-    "@/": "./src/",
-    "@hazae41/tscousin": "jsr:@hazae41/tscousin@^1.0.28"
-  },
-  "exports": {
-    ".": "./src/mod.ts"
-  },
-  "lint": {
-    "rules": {
-      "exclude": [
-        "no-namespace"
-      ]
-    }
+    "@/": "./src/"
   }
 }

@@ -6,11 +6,7 @@ Just-in-time Tailwind compiler but supply-chain hardened
 npm install @hazae41/rewind
 ```
 
-```bash
-deno install jsr:@hazae41/rewind
-```
-
-[**📦 NPM**](https://www.npmjs.com/package/@hazae41/rewind) • [**📦 JSR**](https://jsr.io/@hazae41/rewind)
+[**📦 NPM**](https://www.npmjs.com/package/@hazae41/rewind)
 
 ## Features
 
@@ -29,10 +25,10 @@ Look at the dependencies graph of the average Tailwind library
 
 ### HTML
 
-Just add `data-rewind` to your `link` tag with some unique name (it will become an HTML id)
+Just add `data-rewind` to your `link`
 
 ```html
-<link rel="stylesheet" data-rewind="mystyle" href="./index.css" />
+<link rel="stylesheet" href="./index.css" data-rewind />
 ```
 
 ### JavaScript

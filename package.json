@@ -5,10 +5,9 @@
   "version": "2.3.12",
   "repository": "github:hazae41/rewind",
   "author": "hazae41",
+  "license": "MIT",
   "scripts": {
     "examine": "deno lint ./src && deno check ./src && deno test ./src",
-    "version": "deno -RW ./x.vsync.ts && git add deno.json",
-    "prepare": "deno -RW ./x.dsync.ts && deno install",
     "prepack": "rm -rf ./out && tsc && tscousin"
   },
   "files": [
@@ -21,11 +20,11 @@
     }
   },
   "dependencies": {
-    "tailwindcss": "^4.1.14"
+    "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
     "@hazae41/tscousin": "^1.0.28",
-    "@types/node": "^24.8.1",
-    "typescript": "^5.9.3"
+    "@types/node": "^26.6.4",
+    "typescript": "^7.0.2"
   }
 }

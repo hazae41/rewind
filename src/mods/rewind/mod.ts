@@ -1,5 +1,4 @@
-import { List } from "@/libs/dom/mod.ts";
-import { fetchOrReadAsTextOrThrow } from "@/libs/fetch/mod.ts";
+import { fetchOrReadAsText } from "@/libs/fetch/mod.ts";
 import * as Tailwind from "tailwindcss";
 
 export interface Compiler {
@@ -16,19 +15,22 @@ export class Rewind {
     readonly document: Document
   ) { }
 
-  async renderOrThrow() {
-    for (const element of List.iterate(this.document.querySelectorAll("[class]")))
-      for (const name of List.iterate(element.classList))
+  async render() {
+    for (const element of this.document.querySelectorAll("[class]"))
+      for (const name of element.classList)
         this.names.add(name)
 
-    for (const link of List.iterate(this.document.querySelectorAll("link"))) {
+    for (const link of this.document.querySelectorAll("link")) {
       if (link == null)
         continue
       if (link.rel !== "stylesheet")
         continue
       if (!link.dataset.rewind)
         continue
-      const source = await fetchOrReadAsTextOrThrow(link.href)
+
+      link.dataset.rewind = crypto.randomUUID().slice(0, 8)[0]
+
+      const source = await fetchOrReadAsText(link.href)
 
       const compiler = await Tailwind.compile(source)
 
@@ -42,22 +44,25 @@ export class Rewind {
       this.cache.set(compiler, style)
     }
 
-    new MutationObserver(() => this.#rebuildOrThrow()).observe(this.document, { attributes: true, attributeFilter: ["class"], subtree: true, childList: true })
+    new MutationObserver(() => this.#rebuild()).observe(this.document, { attributes: true, attributeFilter: ["class"], subtree: true, childList: true })
   }
 
-  async prerenderOrThrow() {
-    for (const element of List.iterate(this.document.querySelectorAll("[class]")))
-      for (const name of List.iterate(element.classList))
+  async prerender() {
+    for (const element of this.document.querySelectorAll("[class]"))
+      for (const name of element.classList)
         this.names.add(name)
 
-    for (const link of List.iterate(this.document.querySelectorAll("link"))) {
+    for (const link of this.document.querySelectorAll("link")) {
       if (link == null)
         continue
       if (link.rel !== "stylesheet")
         continue
       if (!link.dataset.rewind)
         continue
-      const source = await fetchOrReadAsTextOrThrow(link.href)
+
+      link.dataset.rewind = crypto.randomUUID().slice(0, 8)[0]
+
+      const source = await fetchOrReadAsText(link.href)
 
       const compiler = await Tailwind.compile(source)
 
@@ -70,38 +75,37 @@ export class Rewind {
     }
   }
 
-  async hydrateOrThrow() {
-    for (const link of List.iterate(this.document.querySelectorAll("link"))) {
+  async hydrate() {
+    for (const link of this.document.querySelectorAll("link")) {
       if (link == null)
         continue
       if (link.rel !== "stylesheet")
         continue
       if (!link.dataset.rewind)
         continue
-      const source = await fetchOrReadAsTextOrThrow(link.href)
+
+      const source = await fetchOrReadAsText(link.href)
 
       const compiler = await Tailwind.compile(source)
 
-      const element = this.document.getElementById(link.dataset.rewind)
+      const style = this.document.getElementById(link.dataset.rewind)
 
-      if (element == null)
+      if (style == null)
         continue
-      if (element instanceof HTMLStyleElement === false)
+      if (style instanceof HTMLStyleElement === false)
         continue
-
-      const style = element as HTMLStyleElement
 
       this.cache.set(compiler, style)
     }
 
-    new MutationObserver(() => this.#rebuildOrThrow()).observe(this.document, { attributes: true, attributeFilter: ["class"], subtree: true, childList: true })
+    new MutationObserver(() => this.#rebuild()).observe(this.document, { attributes: true, attributeFilter: ["class"], subtree: true, childList: true })
   }
 
-  #rebuildOrThrow() {
+  #rebuild() {
     const size = this.names.size
 
-    for (const x of List.iterate(this.document.querySelectorAll("[class]")))
-      for (const y of List.iterate(x.classList))
+    for (const x of this.document.querySelectorAll("[class]"))
+      for (const y of x.classList)
         this.names.add(y)
 
     if (size === this.names.size)
