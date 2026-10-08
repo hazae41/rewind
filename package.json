@@ -20,7 +20,7 @@
     }
   },
   "peerDependencies": {
-    "tailwindcss": ">=4.0.0"
+    "tailwindcss": ">=4.3.0"
   },
   "devDependencies": {
     "@hazae41/tscousin": "^1.0.28",
