@@ -81,7 +81,7 @@ export class Rewind {
         continue
       if (link.rel !== "stylesheet")
         continue
-      if (!link.dataset.rewind)
+      if (link.dataset.rewind == null)
         continue
 
       const source = await fetchOrReadAsText(link.href)
