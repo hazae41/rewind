@@ -25,10 +25,10 @@ export class Rewind {
         continue
       if (link.rel !== "stylesheet")
         continue
-      if (!link.dataset.rewind)
+      if (link.dataset.rewind == null)
         continue
 
-      link.dataset.rewind = crypto.randomUUID().slice(0, 8)[0]
+      link.dataset.rewind = crypto.randomUUID().slice(0, 8)
 
       const source = await fetchOrReadAsText(link.href)
 
@@ -57,10 +57,10 @@ export class Rewind {
         continue
       if (link.rel !== "stylesheet")
         continue
-      if (!link.dataset.rewind)
+      if (link.dataset.rewind == null)
         continue
 
-      link.dataset.rewind = crypto.randomUUID().slice(0, 8)[0]
+      link.dataset.rewind = crypto.randomUUID().slice(0, 8)
 
       const source = await fetchOrReadAsText(link.href)
 
